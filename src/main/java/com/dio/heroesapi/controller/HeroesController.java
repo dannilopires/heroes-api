@@ -3,6 +3,7 @@ package com.dio.heroesapi.controller;
 import com.dio.heroesapi.document.Heroes;
 import com.dio.heroesapi.repository.HeroesRepository;
 import com.dio.heroesapi.service.HeroesService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,11 +13,12 @@ import reactor.core.publisher.Mono;
 import static com.dio.heroesapi.constants.HeroesConstant.HEROES_ENDPOINT_LOCAL;
 
 @RestController
+@Slf4j
 public class HeroesController {
     HeroesService heroesService;
     HeroesRepository heroesRepository;
 
-    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(HeroesController.class);
+    //private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(HeroesController.class);
 
     public HeroesController (HeroesService heroesService, HeroesRepository heroesRepository){
         this.heroesService = heroesService;
@@ -24,7 +26,8 @@ public class HeroesController {
     }
 
     @GetMapping(HEROES_ENDPOINT_LOCAL)
-    public Flux<Heroes> getAllItems () {
+    @ResponseStatus(HttpStatus.OK)
+    public Flux<Heroes> getAllItems() {
         log.info("Requesting the list of all heroes");
         return heroesService.findAll();
     }
