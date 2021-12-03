@@ -26,13 +26,20 @@ public class HeroesData {
                 .withNumber("films", 3);
 
         Item hero2 = new Item()
-                .withPrimaryKey("id", "3")
+                .withPrimaryKey("id", "2")
                 .withString("name", "Viuva negra")
                 .withString("universe", "marvel")
                 .withNumber("films", 2);
 
+        Item hero3 = new Item()
+                .withPrimaryKey("id", "3")
+                .withString("name", "Pantera Negra")
+                .withString("universe", "marvel")
+                .withNumber("films", 1);
+
         PutItemOutcome outcome = table.putItem(hero);
         PutItemOutcome outcome2 = table.putItem(hero2);
+        PutItemOutcome outcome3 = table.putItem(hero3);
 
 
     }
